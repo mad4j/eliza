@@ -23,12 +23,15 @@ body {
     color: var(--text-primary);
     height: 100vh;
     overflow: hidden;
+    /* Support for safe areas on mobile devices */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
 }
 
 .container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
     max-width: 800px;
     margin: 0 auto;
     background: var(--surface);
