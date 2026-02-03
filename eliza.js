@@ -29,7 +29,7 @@ class Eliza {
         };
         
         this.patterns = this.initializePatterns();
-        this.quitWords = ['quit', 'esci', 'bye', 'ciao', 'addio', 'arrivederci'];
+        this.quitWords = ['quit', 'esci', 'bye', 'addio', 'arrivederci'];
     }
 
     initializePatterns() {
@@ -47,7 +47,7 @@ class Eliza {
             
             // Stato emotivo - tristezza
             {
-                pattern: /(?:sono|mi sento|sto) (?:triste|depresso|gi[uù]|male|abbattuto|melanconico)/i,
+                pattern: /(?:sono|mi sento|sto)(?:\s+(?:un po'|molto|davvero|piuttosto|abbastanza))?\s+(?:triste|depresso|gi[uù]|male|abbattuto|melanconico)/i,
                 responses: [
                     'Mi dispiace che tu ti senta così. Puoi dirmi di più su cosa ti fa sentire triste?',
                     'Capisco che ti senti giù. Da quanto tempo ti senti così?',
@@ -58,7 +58,7 @@ class Eliza {
             
             // Stato emotivo - felicità
             {
-                pattern: /(?:sono|mi sento|sto) (?:felice|contento|bene|allegro|euforico|entusiasta)/i,
+                pattern: /(?:sono|mi sento|sto)(?:\s+(?:molto|davvero|piuttosto|abbastanza|così))?\s+(?:felice|contento|bene|allegro|euforico|entusiasta)/i,
                 responses: [
                     'È meraviglioso sentirti così! Cosa ti ha reso felice?',
                     'Che bello! Raccontami di più su quello che ti fa stare bene.',
@@ -69,7 +69,7 @@ class Eliza {
             
             // Ansia e preoccupazione
             {
-                pattern: /(?:sono|mi sento) (?:ansioso|preoccupato|stressato|nervoso|agitato)/i,
+                pattern: /(?:sono|mi sento)(?:\s+(?:molto|un po'|davvero|piuttosto|abbastanza|così))?\s+(?:ansioso|preoccupato|stressato|nervoso|agitato)/i,
                 responses: [
                     'L\'ansia può essere difficile da gestire. Cosa ti preoccupa in particolare?',
                     'Capisco che tu sia preoccupato. Vuoi parlarmene?',
