@@ -23,12 +23,14 @@ self.addEventListener('install', (event) => {
         caches.open(CACHE_NAME)
             .then((cache) => {
                 console.log('Service Worker: File in cache');
-                return cache.addAll(urlsToCache.map(url => {
-                    // Ignora gli errori per i file che potrebbero non esistere ancora
-                    return cache.add(url).catch(err => {
-                        console.log('Service Worker: Impossibile cachare', url);
-                    });
-                }));
+                // Prova ad aggiungere tutti i file, ignorando gli errori per file mancanti
+                return Promise.all(
+                    urlsToCache.map(url => {
+                        return cache.add(url).catch(err => {
+                            console.log('Service Worker: Impossibile cachare', url);
+                        });
+                    })
+                );
             })
             .then(() => self.skipWaiting())
     );

@@ -27,5 +27,5 @@ Thumbs.db
 # Temp
 *.tmp
 *.temp
-*.svg
+icon.svg
 /tmp/
