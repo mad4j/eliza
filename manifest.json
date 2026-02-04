@@ -3,7 +3,7 @@
   "short_name": "Eliza",
   "description": "Eliza è un terapeuta virtuale con cui puoi parlare dei tuoi pensieri e sentimenti",
   "start_url": "./",
-  "display": "standalone",
+  "display": "fullscreen",
   "background_color": "#ffffff",
   "theme_color": "#5b7c99",
   "orientation": "portrait-primary",
