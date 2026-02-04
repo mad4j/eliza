@@ -88,7 +88,7 @@ function handleSendMessage() {
     }, delay);
 }
 
-function addMessage(text, sender, skipSave = false) {
+function addMessage(text, sender, skipSave = false, savedTimestamp = null) {
     const chatContainer = document.getElementById('chatContainer');
     
     const messageDiv = document.createElement('div');
@@ -100,7 +100,11 @@ function addMessage(text, sender, skipSave = false) {
     
     const timestamp = document.createElement('div');
     timestamp.className = 'message-timestamp';
-    timestamp.textContent = new Date().toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' });
+    
+    // Usa il timestamp salvato se disponibile, altrimenti crea uno nuovo
+    const timestampValue = savedTimestamp || Date.now();
+    const date = new Date(timestampValue);
+    timestamp.textContent = date.toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' });
     
     messageDiv.appendChild(bubbleDiv);
     messageDiv.appendChild(timestamp);
@@ -108,7 +112,7 @@ function addMessage(text, sender, skipSave = false) {
     
     // Salva nella cronologia
     if (!skipSave) {
-        chatHistory.push({ text, sender, timestamp: Date.now() });
+        chatHistory.push({ text, sender, timestamp: timestampValue });
         saveChatHistory();
     }
     
@@ -193,9 +197,9 @@ function loadChatHistory() {
         const saved = localStorage.getItem('eliza-chat-history');
         if (saved) {
             chatHistory = JSON.parse(saved);
-            // Ripristina i messaggi salvati
+            // Ripristina i messaggi salvati con i timestamp originali
             chatHistory.forEach(msg => {
-                addMessage(msg.text, msg.sender, true);
+                addMessage(msg.text, msg.sender, true, msg.timestamp);
             });
         }
     } catch (e) {
@@ -275,6 +279,14 @@ function loadTheme() {
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
             setTheme(prefersDark ? 'dark' : 'light');
         }
+        
+        // Ascolta i cambiamenti nelle preferenze di sistema
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            // Solo se l'utente non ha una preferenza salvata
+            if (!localStorage.getItem('eliza-theme')) {
+                setTheme(e.matches ? 'dark' : 'light');
+            }
+        });
     } catch (e) {
         console.error('Impossibile caricare il tema', e);
     }

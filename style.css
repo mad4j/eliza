@@ -18,6 +18,22 @@
     --border-color: #e0e0e0;
 }
 
+/* Tema chiaro esplicito */
+body[data-theme="light"] {
+    --primary-color: #5b7c99;
+    --primary-dark: #3f5870;
+    --secondary-color: #7a8e9e;
+    --background: #f5f5f5;
+    --surface: #ffffff;
+    --text-primary: #000000;
+    --text-secondary: #666666;
+    --user-bubble: #5b7c99;
+    --eliza-bubble: #e8e8e8;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --border-color: #e0e0e0;
+}
+
+/* Tema scuro */
 body[data-theme="dark"] {
     --primary-color: #7a9fc4;
     --primary-dark: #5b7c99;
@@ -148,16 +164,17 @@ body {
 
 .message {
     display: flex;
+    flex-direction: column;
     margin-bottom: 16px;
     animation: slideIn 0.3s ease-out;
 }
 
 .message.user {
-    justify-content: flex-end;
+    align-items: flex-end;
 }
 
 .message.eliza {
-    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 .message-bubble {
@@ -185,14 +202,15 @@ body {
     color: var(--text-secondary);
     margin-top: 4px;
     opacity: 0.7;
+    padding: 0 4px;
 }
 
 .message.user .message-timestamp {
-    text-align: right;
+    align-self: flex-end;
 }
 
 .message.eliza .message-timestamp {
-    text-align: left;
+    align-self: flex-end;
 }
 
 .typing-indicator {
