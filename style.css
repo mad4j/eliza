@@ -5,14 +5,14 @@
 }
 
 :root {
-    --primary-color: #7c5a9d;
-    --primary-dark: #5d4a75;
-    --secondary-color: #6ba39a;
+    --primary-color: #5b7c99;
+    --primary-dark: #3f5870;
+    --secondary-color: #7a8e9e;
     --background: #f5f5f5;
     --surface: #ffffff;
     --text-primary: #000000;
     --text-secondary: #666666;
-    --user-bubble: #7c5a9d;
+    --user-bubble: #5b7c99;
     --eliza-bubble: #e8e8e8;
     --shadow: rgba(0, 0, 0, 0.1);
 }
